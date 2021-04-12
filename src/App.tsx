@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { GameHelper } from './modules/game-engine/rules';
+import PlayingCard from './ui/card/card';
+import { Card } from './modules/game-engine/models/card.enum';
 
 function App() {
+  const deck: Card[] = GameHelper.shuffleDeck(GameHelper.generateDeck());
+  const [userCards, setUserCards] = useState([deck.pop(), deck.pop()]);
+  const [dealerCards, setDealerCards] = useState([deck.pop(), deck.pop()]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        Dealer Cards
+        <div>
+          {dealerCards.map(card => card ? <PlayingCard card={card}></PlayingCard> : '')}
+        </div>
+      </div>
+      <div>
+        Player Cards
+        <div>
+          {userCards.map(card => card ? <PlayingCard card={card}></PlayingCard> : '')}
+        </div>
+      </div>
+      <div>
+        <button>Hit</button>
+        <button>Stay</button>
+        <button>Play Again</button>
+      </div>
     </div>
   );
 }

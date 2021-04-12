@@ -1,0 +1,8 @@
+.playing-card {
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    height: 250px;
+    border-color: black;
+    border: solid;
+}
