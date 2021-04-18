@@ -9,6 +9,19 @@ function App() {
   const [userCards, setUserCards] = useState([deck.pop(), deck.pop()]);
   const [dealerCards, setDealerCards] = useState([deck.pop(), deck.pop()]);
 
+  const onHit = () => {
+    const userCardValue = userCards.reduce((acc, curr) => {
+      const lowerValue = curr?.values.sort((a, b) => a - b)[0] ?? 0;
+      return acc + lowerValue;
+    }, 0);
+
+    if (userCardValue > 21) return;
+
+    setUserCards([...userCards, deck.pop()]);
+  };
+  const onStay = () => { };
+  const onPlayAgain = () => { };
+
   return (
     <div className="App">
       <div>
@@ -24,9 +37,9 @@ function App() {
         </div>
       </div>
       <div>
-        <button>Hit</button>
-        <button>Stay</button>
-        <button>Play Again</button>
+        <button onClick={onHit}>Hit</button>
+        <button onClick={onStay}>Stay</button>
+        <button onClick={onPlayAgain}>Play Again</button>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export enum Suit {
 export type SuitType = { [Tkey in Suit]: Suit }
 
 export interface Card {
-    values: Number[];
+    values: number[];
     displayText: string;
     icon: any;
     suit: string;
